@@ -1,5 +1,3 @@
 __pycache__
 migrations
 db.*
-homepage/db.sqlite3
-homepage/users/__pycache__/admin.cpython-38.pyc
