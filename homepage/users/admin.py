@@ -4,4 +4,9 @@ from users.models import User
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    pass
+    # fields to be used in editing users
+    fieldsets = (
+        (None, {
+            'fields': ('email', 'password')
+        }),
+    )
