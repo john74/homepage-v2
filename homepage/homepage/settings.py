@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #local apps
+    'authentication.apps.AuthenticationConfig',
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
     'bookmarks.apps.BookmarksConfig'
@@ -58,7 +59,11 @@ ROOT_URLCONF = 'homepage.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates/hompage',
+            BASE_DIR / 'home/templates/home',
+            BASE_DIR / 'authentication/templates/authentication',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
