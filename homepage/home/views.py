@@ -1,8 +1,9 @@
-from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect, reverse
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
 
+from bookmarks.models import Bookmark
 from users.models import User
+
+from .utils import get_categorized_bookmarks, get_shortcuts, get_bookmark_sub_categories, get_bookmark_categories
 
 
 def home(request):
@@ -10,5 +11,14 @@ def home(request):
     if not user.is_authenticated:
         return redirect('authentication/login/')
 
-    context = {}
+    bookmarks = Bookmark.objects.all()
+    bookmark_categories = get_bookmark_categories(bookmarks)
+    bookmark_sub_categories = get_bookmark_sub_categories(bookmarks)
+    shortcuts = get_shortcuts(bookmarks)
+    context = {
+        'bookmark_categories': bookmark_categories,
+        'bookmark_sub_categories': bookmark_sub_categories,
+        'bookmarks': bookmarks,
+        'shortcuts': shortcuts
+    }
     return render(request, 'home.html', context)
