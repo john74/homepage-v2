@@ -5,7 +5,7 @@ from users.models import User
 
 class BookmarkCategory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     class Meta:
         verbose_name_plural = 'Bookmark Categories'
@@ -16,7 +16,7 @@ class BookmarkCategory(models.Model):
 
 class BookmarkSubCategory(models.Model):
     category = models.ForeignKey(BookmarkCategory, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     class Meta:
         verbose_name_plural = 'Bookmark Subcategories'
