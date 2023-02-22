@@ -27,7 +27,7 @@ class BookmarkSubCategory(models.Model):
 
 class Bookmark(models.Model):
     sub_category = models.ForeignKey(BookmarkSubCategory, blank=True, null=True, on_delete=models.CASCADE, default='Other')
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     url = models.CharField(max_length=700, unique=True)
     icon = models.URLField(max_length=500, blank=True, null=True)
     is_shortcut = models.BooleanField(default=False)
