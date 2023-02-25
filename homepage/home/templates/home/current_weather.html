@@ -1,0 +1,5 @@
+{% if current_weather_data %}
+<div id="weather">
+    {{current_weather_data.temp}} - {{current_weather_data.temp_min}} - {{current_weather_data.temp_max}} - {{current_weather_data.feels_like}} - {{current_weather_data.description}}
+</div>
+{% endif %}

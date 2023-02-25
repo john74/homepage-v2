@@ -7,6 +7,6 @@ class UserAdmin(admin.ModelAdmin):
     # fields to be used in editing users
     fieldsets = (
         (None, {
-            'fields': ('email', 'password')
+            'fields': ('email', 'password', 'open_weather_key', 'city')
         }),
     )

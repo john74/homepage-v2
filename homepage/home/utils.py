@@ -1,3 +1,6 @@
+import httpx
+
+
 def get_bookmark_categories(bookmarks):
     categories = []
     for bookmark in bookmarks:
@@ -20,3 +23,23 @@ def get_shortcuts(bookmarks):
                 'icon': bookmark.icon
             })
     return shortcuts
+
+def get_weather_data(user, data_type):
+    if not user.open_weather_key:
+        return
+    url = f'http://api.openweathermap.org/data/2.5/{data_type}?q={user.city}&appid={user.open_weather_key}&units=metric'
+    response = httpx.get(url)
+    if response.status_code != 200:
+        return
+    return response.json()
+
+def get_current_weather_data(data):
+    if not data:
+        return
+    return {
+        'temp': data['main']['temp'],
+        'temp_min': data['main']['temp_min'],
+        'temp_max': data['main']['temp_max'],
+        'feels_like': data['main']['feels_like'],
+        'description': data['weather'][0]['description']
+    }

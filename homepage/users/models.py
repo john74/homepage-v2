@@ -56,6 +56,8 @@ class User(AbstractUser):
     '''
     username = None
     email = models.EmailField(unique=True)
+    city = models.CharField(max_length=100, null=True, blank=True, default='Volos')
+    open_weather_key = models.CharField(max_length=300, null=True, blank=True, default='')
 
     objects = UserManager()
 

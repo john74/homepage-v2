@@ -1,0 +1,23 @@
+<div id="bookmarks">
+    {% for category in bookmark_categories %}
+        <div class="category">
+            <h5 class="title">{{ category.name }}</h5>
+
+            {% for sub_category in bookmark_sub_categories %}
+
+                {% if sub_category.category == category %}
+                    <h6>{{ sub_category.name }}</h6>
+                    {% for bookmark in bookmarks %}
+                        {% if bookmark.sub_category == sub_category %}
+                        <a class="bookmark" href="{{ shortcut.url }}" title="{{ bookmark.name }}">
+                            {{ bookmark.name }}
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+    {% endfor %}
+</div>
