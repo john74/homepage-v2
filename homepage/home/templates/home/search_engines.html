@@ -1,0 +1,31 @@
+{% if search_engines %}
+<div id="search-bar">
+
+    <div id="available-search-engines">
+    {% for engine in search_engines %}
+    <!-- <img src="{{engine.icon}}" alt="{{engine.name}}" title="{{engine.name}}"> -->
+        <span
+        class="engine"
+        data-url="{{engine.url}}{{engine.form_action}}"
+        data-action="{{engine.form_action}}"
+        data-method="{{engine.form_method}}"
+        data-name="{{engine.name_attribute}}"
+        data-icon="{{engine.icon}}"
+        data-default="{{engine.is_default}}"
+        >
+            {{engine.name}}
+        </span>
+    {% endfor %}
+    </div>
+
+    <form
+    id="search-form"
+    action="{{default_search_engine.url}}{{default_search_engine.form_action}}"
+    method="{{default_search_engine.form_method}}"
+    >
+        <input type="text" name="{{default_search_engine.name_attribute}}">
+    </form>
+
+
+</div>
+{% endif %}
