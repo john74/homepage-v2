@@ -7,11 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'main.css' %}">
+    <style>
+        body {
+            background-color: black;
+            color: #fff;
+        }
+    </style>
 </head>
-<body>
-
     {% block main %}{% endblock main %}
-    <a href="{% url 'authentication/logout' %}">Logout</a>
+    <a href="{% url 'logout' %}">Logout</a>
     <script src="{% static 'main.js' %}"></script>
 </body>
 </html>

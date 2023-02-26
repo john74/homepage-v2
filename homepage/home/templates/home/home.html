@@ -1,29 +1,17 @@
+{% extends 'index.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'main.css' %}">
-    <style>
-        body {
-            background-color: black;
-            color: #fff;
-        }
-    </style>
-</head>
-<body>
+{% block title %}Home{% endblock title %}
+
+{% block main %}
+<body id="home">
     {% include 'current_weather.html' %}
     {% include 'shortcuts.html' %}
     {% include 'search_engines.html' %}
     {% include 'bookmarks.html' %}
 
+{% endblock main %}
 
 
-    <a href="{% url 'logout' %}">Logout</a>
 
-    <script src="{% static 'main.js' %}"></script>
-</body>
-</html>
+
+
