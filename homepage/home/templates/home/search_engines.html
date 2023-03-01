@@ -1,31 +1,35 @@
-{% if search_engines %}
-<div id="search-bar">
-
-    <div id="available-search-engines">
+<form id="search-form" class="col-md-6" action="{{default_search_engine.url}}{{default_search_engine.form_action}}" method="{{default_search_engine.form_method}}">
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{default_search_engine.name}}</button>
+    <ul class="dropdown-menu">
     {% for engine in search_engines %}
-    <!-- <img src="{{engine.icon}}" alt="{{engine.name}}" title="{{engine.name}}"> -->
-        <span
-        class="engine"
+      <li>
+        <a
+        class="dropdown-item"
         data-url="{{engine.url}}{{engine.form_action}}"
         data-action="{{engine.form_action}}"
         data-method="{{engine.form_method}}"
         data-name="{{engine.name_attribute}}"
-        data-icon="{{engine.icon}}"
         data-default="{{engine.is_default}}"
         >
             {{engine.name}}
-        </span>
-    {% endfor %}
-    </div>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
 
-    <form
-    id="search-form"
-    action="{{default_search_engine.url}}{{default_search_engine.form_action}}"
-    method="{{default_search_engine.form_method}}"
-    >
-        <input type="text" name="{{default_search_engine.name_attribute}}">
-    </form>
+    <input type="text" class="form-control" aria-label="Text input with 2 dropdown buttons" name="{{default_search_engine.name_attribute}}">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+</form>
 
+<style>
+    #search-form {
+        display: flex;
+        align-items: center;
+    }
 
-</div>
-{% endif %}
+    #search-form .form-control,
+    #search-form .btn {
+        border-radius: 0;
+    }
+
+</style>

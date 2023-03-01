@@ -1,23 +1,70 @@
-<div id="bookmarks">
-    {% for category in bookmark_categories %}
-        <div class="category">
-            <h5 class="title">{{ category.name }}</h5>
-
+<div id="bookmarks" class="col-md-8 row row-cols-1 row-cols-md-4 g-4">
+{% for category in bookmark_categories %}
+    <div class="col">
+        <h5 class="card-title" style="background-color: {{category.color}};">{{category.name}}</h5>
+        <div class="card">
+            <div class="card-body overflow-auto">
             {% for sub_category in bookmark_sub_categories %}
-
                 {% if sub_category.category == category %}
-                    <h6>{{ sub_category.name }}</h6>
-                    {% for bookmark in bookmarks %}
-                        {% if bookmark.sub_category == sub_category %}
-                        <a class="bookmark" href="{{ shortcut.url }}" title="{{ bookmark.name }}">
-                            {{ bookmark.name }}
-                        </a>
-                        {% endif %}
-                    {% endfor %}
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{sub_category.name}}
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="{{sub_category.name}}">
+                        {% for bookmark in bookmarks %}
+                            {% if bookmark.sub_category == sub_category %}
+                                <li>
+                                    <a class="dropdown-item" href="{{bookmark.url}}" title="{{bookmark.name}}">{{bookmark.name}}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+
                 {% endif %}
-
             {% endfor %}
-
+            </div>
         </div>
-    {% endfor %}
+    </div>
+{% endfor %}
 </div>
+
+
+<style>
+    #bookmarks {
+        display: flex;
+        margin-top: 50px;
+    }
+    #bookmarks .card-title {
+        text-align: center;
+        padding: 3px;
+        font-size: 17px;
+        margin: 0;
+        font-weight: bold;
+    }
+    #bookmarks > .col {
+        max-height: 214px;
+        min-height: 214px;
+        min-width: 200px;
+    }
+    #bookmarks .card {
+        height: 100%;
+        border: none;
+        background-color: transparent;
+    }
+    #bookmarks .card-body {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+        padding: 1rem 0;
+    }
+    #bookmarks .card-body > .dropdown-menu {
+        width: 100%;
+        border-radius: 0;
+        max-height: 170px;
+        overflow-y: scroll;
+    }
+    #bookmarks .btn {
+        border-radius: 0;
+    }
+</style>
+

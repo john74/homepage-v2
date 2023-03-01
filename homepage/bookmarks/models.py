@@ -6,6 +6,7 @@ from users.models import User
 class BookmarkCategory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, unique=True)
+    color = models.CharField(max_length=9)
 
     class Meta:
         verbose_name_plural = 'Bookmark Categories'

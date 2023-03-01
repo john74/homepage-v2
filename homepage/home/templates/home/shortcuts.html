@@ -1,7 +1,45 @@
-<div id="shortcuts">
-{% for shortcut in shortcuts %}
-    <a class="shortcut" href="{{ shortcut.url }}" title="{{ shortcut.name }}">
-        <img src="{{ shortcut.icon }}" alt="{{ shortcut.name }}">
-    </a>
-{% endfor %}
+<div id="shortcuts" class="d-flex flex-column flex-shrink-0">
+
+    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+    {% for shortcut in shortcuts %}
+        <li>
+        <a href="{{shortcut.url}}" class="shortcut nav-link" aria-current="page" title="{{shortcut.name}}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+            <img src="{{shortcut.icon}}" alt="{{shortcut.name}}">
+        </a>
+        </li>
+    {% endfor %}
+    </ul>
+
 </div>
+
+
+<style>
+    #home > .container-fluid > .row {
+        min-height: calc(100vh - 72px);
+        justify-content: space-between;
+    }
+
+    #shortcuts {
+        width: 4.5rem;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        max-height: calc(100vh - 120px);
+    }
+
+    #shortcuts .shortcut {
+        display: flex;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    #shortcuts img {
+        width: 30px;
+        height: 30px;
+    }
+
+    #shortcuts > .nav {
+        align-items: center;
+        row-gap: 15px;
+        margin-top: 10px;
+    }
+</style>

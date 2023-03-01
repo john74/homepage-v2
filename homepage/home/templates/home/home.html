@@ -4,14 +4,19 @@
 
 {% block main %}
 <body id="home">
-    {% include 'current_weather.html' %}
-    {% include 'shortcuts.html' %}
-    {% include 'search_engines.html' %}
-    {% include 'bookmarks.html' %}
+
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'shortcuts.html' %}
+            {% include 'main.html' %}
+        </div>
+    </div>
+
 
 {% endblock main %}
 
 
+    <!-- {% include 'current_weather.html' %} -->
 
 
 
